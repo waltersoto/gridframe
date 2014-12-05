@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>GridFrame Sample</title>
+    <link href="sample.css" rel="stylesheet" />
+    <script src="smalljs/smalljs.js"></script>
+    <script src="smalljs/smalljs.binder.js"></script>
+    <script src="qArr/qArr.js"></script>
+    <script src="../gridframe.js"></script>
+    <script src="sampleData.js"></script>
+
+    <script type="text/javascript">
+
+
+        smalljs.ready(function () {
+
+            //Bind podcasts from sampleData.js
+            datagrid.bind(podcasts);
+
+        });
+
+
+    </script>
+
+</head>
+<body>
+
+    <div class="grid">
+
+        <div sj-repeat="grid-data-source" class="channels" >
+            <div>
+                <!-- the sj-template cannot be the root in sj-repeater -->
+                <div sj-template="true">
+                    <div class="channel">
+                        <div class="name">{name}</div>
+                        <div>{description}</div>
+                        <div>RSS Feed: <a href="{url}" target="_blank">{url}</a></div>
+                    </div>
+                    <div class="clear">
+                        &nbsp;
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="paging">
+            <div id="grid-paging">
+            </div>
+        </div>
+        <div class="clear">&nbsp;</div>
+    </div>
+
+</body>
+</html>

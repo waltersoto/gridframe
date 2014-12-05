@@ -1,0 +1,46 @@
+﻿body {
+    margin:0 0 0 0;
+    font-family:Arial, Verdana;
+    color:#666;
+    font-size:0.9em;
+}
+
+.grid{
+    position:relative;
+    padding-left:10px;
+    padding-right:10px;
+    margin:auto;
+    margin-top:40px;
+    width:700px;
+    height:650px;
+    border:1px solid #d1d1d1;
+}
+
+.channels{ 
+    position:relative;
+    height:600px;
+    overflow:hidden;
+    margin-top:10px;
+}
+.channel > div {
+    margin-bottom:5px;
+}
+
+.name {
+    font-size:2.5em;
+    font-weight:bold;
+    color:#000;
+}
+
+a{
+    color:#0094ff;
+    text-decoration:none;
+}
+a:hover{
+    color:#000;
+    text-decoration:underline;
+}
+
+.paging{
+    font-size:2em;
+}
