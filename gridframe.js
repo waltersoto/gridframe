@@ -23,68 +23,111 @@ SOFTWARE.
 */
 (function ($, qA) {
 
-    var PAGING = 'grid-paging',
-        UNDEFINED = 'undefined',
-        DATA_SOURCE = 'grid-data-source';
+    
 
-    var grid = {
-        source: {},
-        current: 1,
-        size: 5,
-        bind: function (data) {
+    var gridO = function (data, settings) {
 
-            if (typeof data !== UNDEFINED) {
-                this.source[DATA_SOURCE] = data;
+        var self = this;
+
+        var pagingSection = "grid-paging",
+            dataSource = "grid-data-source";
+
+        var source =  {};
+
+        var current = 1;
+        var size = 5;
+
+        if (typeof data !== "undefined" && data !== null) {
+            source = data;
+        }
+
+        if (settings !== null && typeof settings !== "undefined") {
+             
+            if (settings.hasOwnProperty("size")) {
+                size = settings.size;
             }
 
-            var pg = qA(this.source[DATA_SOURCE]).page(this.current, this.size).toArray();
+            if (settings.hasOwnProperty("paging")) {
+                pagingSection = settings.paging;
+            }
 
-            $.binder.sources[DATA_SOURCE] = pg;
-            $.binder.apply();
-
-            this.paging();
-        },
-
-        page: function (pg) {
-            this.current = pg;
-            this.bind();
-        },
-
-        paging: function () {
-
-            var total = Math.ceil(this.source[DATA_SOURCE].length / this.size);
-
-            $(PAGING).removeChildren();
-
-            for (var i = 0; i < total; i++) {
-                var p = i + 1;
-                if (p == this.current) {
-                    var nolink = document.createElement('span');
-                    $(nolink).text(p);
-                    $(PAGING).appendChild(nolink)
-                    .appendChild(document.createTextNode(' '));
-                } else {
-                    var a = document.createElement('a');
-                    a.innerHTML = p;
-                    a.href = '#';
-                    (function (pg) {
-                        $(a).onClick(function () {
-                            grid.page(pg);
-                        });
-                    })(p);
-
-                    $(PAGING).appendChild(a)
-                    .appendChild(document.createTextNode(' '));
-                }
-
+            if (settings.hasOwnProperty("dataSource")) {
+                dataSource = settings.dataSource;
             }
 
         }
 
+
+        this.bind = function() {
+        
+            var pg = qA(source).page(current, size).toArray();
+
+            $.binder.sources[dataSource] = pg;
+            $.binder.apply();
+
+            self.paging();
+        };
+
+       this.page = function(pg) {
+            current = pg;
+           self.bind();
+       };
+
+        
+        this.paging = function() {
+
+            var total = Math.ceil(source.length / size);
+
+            $(pagingSection).removeChildren();
+
+            for (var i = 0; i < total; i++) {
+                var p = i + 1;
+                if (p === current) {
+                    var nolink = document.createElement("span");
+                    $(nolink).text(p);
+                    $(pagingSection).appendChild(nolink)
+                    .appendChild(document.createTextNode(" "));
+                } else {
+                    var a = document.createElement("a");
+                    a.innerHTML = p;
+                    a.href = "#";
+                    (function (pg) {
+                        $(a).onClick(function () {
+                            self.page(pg);
+                        });
+                    })(p);
+
+                    $(pagingSection).appendChild(a)
+                    .appendChild(document.createTextNode(" "));
+                }
+
+            }
+
+        };
+
+    };
+
+
+    var grid = function (data, settings) {
+        ///	<summary>
+        ///	Create a dataGrid
+        ///	</summary>
+        ///	<param name="data" type="array">
+        ///	JSON data array. example: [{"field1":"data"},{"field2":"data"}]
+        ///	</param>
+        ///	<param name="settings" type="JSON">
+        ///	settings = { 
+        ///               size:5,
+        ///               paging:'paging-div',
+        ///               dataSource:'data source attribute name'  
+        ///            }
+        ///	</param>
+        return new gridO(data,settings);
+
     };
      
-    if (!window.datagrid) {
-        window.datagrid = grid;
+    if (!window.grid) {
+        window.grid = grid;
     }
 
 })(smalljs,qA);

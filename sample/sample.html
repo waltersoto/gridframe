@@ -10,16 +10,10 @@
     <script src="sampleData.js"></script>
 
     <script type="text/javascript">
-
-
         smalljs.ready(function () {
-
-            //Bind podcasts from sampleData.js
-            datagrid.bind(podcasts);
-
+            //Bind podcasts from sampleData.js 
+            grid(podcasts).bind();
         });
-
-
     </script>
 
 </head>
@@ -27,7 +21,7 @@
 
     <div class="grid">
 
-        <div sj-repeat="grid-data-source" class="channels" >
+        <div sj-repeat="grid-data-source" class="channels">
             <div>
                 <!-- the sj-template cannot be the root in sj-repeater -->
                 <div sj-template="true">
