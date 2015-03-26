@@ -39,7 +39,7 @@ SOFTWARE.
         return typeof o !== UNDEFINED;
     }
     function contains(str,substring) {
-        return str.indexOf(substring) != -1;
+        return str.indexOf(substring) !== -1;
     }
     function trim(str) {
         return str.replace(/^\s+|\s+$/g, '');
