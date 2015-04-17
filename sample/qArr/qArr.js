@@ -242,12 +242,12 @@
             return this;
         };
 
-        this.take = function (num) {
+        this.fields = function (num) {
             ///	<summary>
             ///	Take top n items
             ///	</summary>
             ///	<param name="num" type="number">
-            ///	Number of items to take
+            ///	Number of items to fields
             ///	</param>
             ///	<returns type="this" />
             if (arr.length > 0 && num > 0) {
@@ -285,7 +285,7 @@
             }
 
             if (arr.length > 0) {
-                arr = this.skip((pg - 1) * size).take(size).toArray();
+                arr = this.skip((pg - 1) * size).fields(size).toArray();
             }
 
             return this;

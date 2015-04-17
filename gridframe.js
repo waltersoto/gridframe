@@ -21,7 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-(function ($, qA) {
+(function ($,bloq, qA) {
 
     
 
@@ -30,7 +30,8 @@ SOFTWARE.
         var self = this;
 
         var pagingSection = "grid-paging",
-            dataSource = "grid-data-source";
+            gridId = "grid-data-source",
+            repeatTemplate = "grid-data-item";
 
         var source =  {};
 
@@ -51,8 +52,8 @@ SOFTWARE.
                 pagingSection = settings.paging;
             }
 
-            if (settings.hasOwnProperty("dataSource")) {
-                dataSource = settings.dataSource;
+            if (settings.hasOwnProperty("gridId")) {
+                gridId = settings.gridId;
             }
 
         }
@@ -61,9 +62,13 @@ SOFTWARE.
         this.bind = function() {
         
             var pg = qA(source).page(current, size).toArray();
+             
+            $(gridId).removeChildren();
 
-            $.binder.sources[dataSource] = pg;
-            $.binder.apply();
+            bloq(gridId)
+                .repeat(pg)
+                .to(repeatTemplate);
+
 
             self.paging();
         };
@@ -130,4 +135,4 @@ SOFTWARE.
         window.grid = grid;
     }
 
-})(smalljs,qA);
+})(smalljs,bloq,qA);

@@ -2,15 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>GridFrame Sample</title>
-    <link href="sample.css" rel="stylesheet" />
+    <link href="sample.css" rel="stylesheet" /> 
     <script src="smalljs/smalljs.js"></script>
-    <script src="smalljs/smalljs.binder.js"></script>
+    <script src="bloq/bloq.js"></script>
     <script src="qArr/qArr.js"></script>
     <script src="../gridframe.js"></script>
     <script src="sampleData.js"></script>
 
     <script type="text/javascript">
-        smalljs.ready(function () {
+        bloq.ready(function () {
             //Bind podcasts from sampleData.js 
             grid(podcasts).bind();
         });
@@ -21,10 +21,9 @@
 
     <div class="grid">
 
-        <div sj-repeat="grid-data-source" class="channels">
-            <div>
-                <!-- the sj-template cannot be the root in sj-repeater -->
-                <div sj-template="true">
+        <div bloq-area="grid-data-source" class="channels">
+            <div bloq-repeat="grid-data-item">
+                <div>
                     <div class="channel">
                         <div class="name">{name}</div>
                         <div>{description}</div>
