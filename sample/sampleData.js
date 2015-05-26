@@ -55,7 +55,7 @@
    },
    {
        'name': 'ESPN: Around the Horn',
-       'description': 'Host Tony Reali and four reporters from across the country debate the hottest issues of the day with points awarded for good arguments.',
+       'description': 'Host Tony Reali and four reporters from across the country debate the hottest issues of the day withThis points awarded for good arguments.',
        'url': 'http://espn.go.com/espnradio/feeds/rss/podcast.xml?id=2839445'
    },
    {

@@ -27,7 +27,7 @@ SOFTWARE.
     var UNDEFINED = "undefined";
     var EVT_BIND_TO = "bind-to";
     var EVT_BIND_ALTERNATE = "bind-alternate";
-    var EVT_LOAD_WITH = "load-with";
+    var EVT_LOAD_WITH = "load-withThis";
     var EVT_LOAD = "load";
     var EVT_LIST = "load-list";
     var XML_ROOT = "templates";
@@ -286,7 +286,7 @@ SOFTWARE.
     var loadEvents = function () {
 
 
-        this.with = function (lst) {
+        this.withThis = function (lst) {
             /// <signature>
             ///   <summary>Template list</summary>
             ///   <param name="lst" type="array">Array of template names (ex. ["template1","teamplate2"])</param> 
@@ -418,7 +418,7 @@ SOFTWARE.
 
     var load = function (name, asText) {
         ///	<summary>
-        ///	Load template as text with data biding
+        ///	Load template as text withThis data biding
         ///	</summary>
         ///	<param name="name" type="string">
         ///	 Name of the template file
@@ -458,7 +458,7 @@ SOFTWARE.
 
     var loadFrom = function (repo) {
         ///	<summary>
-        ///	Set repositiory location and allow the with() method to preload the templates.
+        ///	Set repositiory location and allow the withThis() method to preload the templates.
         ///	</summary>
         ///	<param name="repo" type="string">
         ///	 Repository location
@@ -492,7 +492,7 @@ SOFTWARE.
                 }
 
                 loadFrom(repository)
-                    .with(reqTemplates)
+                    .withThis(reqTemplates)
                     .then(function () {
 
                         var templateN = templates.length;
@@ -624,7 +624,7 @@ SOFTWARE.
             }
 
             loadFrom(repository)
-                .with(reqTemplates)
+                .withThis(reqTemplates)
                 .then(function () {
 
                     for (var i = 0, max = bindList.length; i < max; i++) {
